@@ -52,6 +52,9 @@ from ultralytics.nn.modules import (
     Concat2,
     ADD,
     ADD1,
+    C3k2,
+    C2PSA,
+    GOON,
 )
 from ultralytics.utils import DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, colorstr, emojis, yaml_load
 from ultralytics.utils.checks import check_requirements, check_suffix, check_yaml
@@ -997,6 +1000,8 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
         elif m is ADD1:
             c2 = ch[f[0]]
             args = [c2]
+        elif m is GOON:
+            args = [args[0]]
         elif m is COD:
             if len(f) != 3:
                 raise ValueError(f"COD requires exactly 3 inputs, got {len(f)}")
